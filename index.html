@@ -9,13 +9,32 @@
 </head>
 <body>
     <h1>ROCK PAPER SCISSORS</h1>
-    <div class="game">
-        <button class="choice" id="Rock">Rock</button>
-        <button class="choice" id="Paper">Paper</button>
-        <button class="choice" id="Scissors">Scissors</button>
-        <p>Player Score: <span id="ps">0</span></p>
-        <p>Computer Score: <span id="cs">0</span></p>
-        <p id="curr_round"></p>
+    <div class="content">
+        <div class="container">
+            <div class="scoreboard">
+                <div class="player pc">
+                    <p class="disp_name">YOU</p>
+                    <span id="ps">0</span>
+                </div>
+                <div class="buttons">
+                    <p class="disp_name big">CHOOSE</p>
+                    <button class="choice" id="Rock">
+                        <img src="./images/rock.png">
+                    </button>
+                    <button class="choice" id="Paper">
+                        <img src="./images/paper.png">
+                    </button>
+                    <button class="choice" id="Scissors">
+                        <img src="./images/scissors.png">
+                    </button>
+                </div>
+                <div class="player cc">
+                    <p class="disp_name">AI</p>
+                    <span id="cs">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar"></div>
     </div>
 </body>
 </html>

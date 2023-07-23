@@ -1,7 +1,9 @@
 body {
+    background-color: rgb(65, 65, 140);
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 25px;
 }
 
 h1 {
@@ -10,4 +12,133 @@ h1 {
     border: 2px solid black;
     border-radius: 5px;
     box-shadow: 10px 10px 1px red;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 100px;
+    border: 4px solid black;
+    border-radius: 15px;
+    background-color: rgb(214, 122, 214, 0.7);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 150px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.disp_name {
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 0;
+}
+
+.big {
+    font-size: 30px;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 25px;
+}
+
+.round_result {
+    padding: 12px 50px;
+    font-size: 18px;
+    border: 3px solid;
+    border-radius: 5px;
+}
+
+.tie {
+    background-color: rgb(250, 250, 5, 0.6);
+}
+
+.correct {
+    background-color: rgb(9, 186, 9, 0.6);
+}
+
+.wrong {
+    background-color: rgb(248, 3, 3, 0.6);
+}
+
+span {
+    font-size: 20px;
+}
+
+img {
+    height: 75px;
+    width: 75px;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.811);
+    border: 3px solid purple;
+    padding: 12px;
+    border-radius: 50px;
+}
+
+#ps, #cs {
+    font-size: 40px;
+}
+
+.playImg {
+    height: 50px;
+    width: 50px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.final_result {
+    padding: 20px 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 4px solid black;
+    border-radius: 15px;
+    font-size: 30px;
+    justify-content: center;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: all 0.2s;
+    transform: scale(1.1);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.reload {
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    border: 4px solid black;
+}
+
+.reload:hover {
+    cursor: pointer;
+    transition: all 0.2s;
+    transform: scale(1.1);
 }

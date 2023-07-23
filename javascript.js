@@ -8,15 +8,20 @@ function getComputerChoice() {
 let computerScore = 0;
 let playerScore = 0;
 
-function playRound(ps, cs) {
-    if (ps === cs) return `Tie! Both Used ${ps}.`;
+function playRound(ps, cs, currResult) {
+    if (ps === cs) {
+        currResult.classList.add('tie');
+        return `Tie! Both Used ${ps}.`;
+    } 
     else if (ps === 'Rock' && cs === 'Scissors' || ps === 'Paper' && cs === 'Rock' || ps === 'Scissors' && cs === 'Paper') {
         playerScore++;
         document.getElementById("ps").textContent++;
+        currResult.classList.add('correct');
         return `You Won! ${ps} Beats ${cs}.`;
     }
     else {
         computerScore++;
+        currResult.classList.add('wrong');
         document.getElementById("cs").textContent++;
         return `You Lost! ${cs} Beats ${ps}.`;
     } 
@@ -25,14 +30,67 @@ function playRound(ps, cs) {
 function game() {
     let playerSelection = this.id;
     let computerSelection = getComputerChoice();
-    document.querySelector('#curr_round').textContent = playRound(playerSelection, computerSelection);
+
+    if (document.querySelectorAll('.playImg')) {
+        document.querySelectorAll('.playImg').forEach(pic => {
+            pic.remove();
+        })
+    }
+
+    const playerChoiceImage = document.querySelector('.pc');
+    const compChoiceImage = document.querySelector('.cc');
+
+    const pimg = document.createElement('img');
+    pimg.classList.add('playImg');
+    pimg.src = `./images/${playerSelection.toLowerCase()}.png`
+
+    const cimg = document.createElement('img');
+    cimg.classList.add('playImg');
+    cimg.src = `./images/${computerSelection.toLowerCase()}.png`
+
+    playerChoiceImage.appendChild(pimg);
+    compChoiceImage.appendChild(cimg);
+
+    const container = document.querySelector('.container');
+    if (document.querySelector('.round_result')) {
+        container.removeChild(container.lastElementChild);
+    }
+    const currResult = document.createElement('p');
+    currResult.classList.add('round_result');
+    currResult.textContent = playRound(playerSelection, computerSelection, currResult);
+    container.appendChild(currResult);
+
     if (playerScore == 5 || computerScore == 5){
         choiceList.forEach(choice => {
             choice.removeEventListener('click', game);
         });
         const result = document.createElement('p');
-        result.textContent = (computerScore > playerScore)? "You Lost!" : "You Won!";
-        document.body.appendChild(result);
+        result.classList.add('final_result');
+        result.textContent = (computerScore > playerScore)? "You Lost! AI Will Take Your Job :(" : "Congratulations! You Beat The AI :)";
+        (computerScore > playerScore)? result.classList.add('wrong') : result.classList.add('correct');
+        document.body.lastElementChild.lastElementChild.appendChild(result);
+
+        const reload = document.createElement('img');
+        reload.src = "./images/reload.png";
+        reload.classList.add('reload');
+        document.body.lastElementChild.lastElementChild.appendChild(reload);
+
+        reload.addEventListener('click', () => {
+            document.body.lastElementChild.lastElementChild.lastElementChild.remove();
+            document.body.lastElementChild.lastElementChild.lastElementChild.remove();
+            document.querySelectorAll('.playImg').forEach(pic => {
+                pic.remove();
+            })
+            container.removeChild(container.lastElementChild);
+            computerScore = 0;
+            playerScore = 0;
+            document.getElementById("ps").textContent = 0;
+            document.getElementById("cs").textContent = 0;
+            const choiceList = document.querySelectorAll('.choice');
+            choiceList.forEach(choice => {
+                choice.addEventListener('click', game);
+            });
+        });
     }
 }
 
@@ -41,7 +99,3 @@ const choiceList = document.querySelectorAll('.choice');
 choiceList.forEach(choice => {
     choice.addEventListener('click', game);
 });
-/*
-if (computerScore == playerScore) alert(`Tie! Player: ${playerScore} | AI: ${computerScore}`);
-else if (computerScore > playerScore) alert(`You Lost! Player: ${playerScore} | AI: ${computerScore}`);
-else alert(`You Won! Player: ${playerScore} | AI: ${computerScore}`);*/
